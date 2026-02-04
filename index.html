@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luiz Gonzaga - O Rei do Baião</title>
+    <style>
+        /* --- CONFIGURAÇÕES GERAIS E CORES --- */
+        :root {
+            --cor-verde-neon: #00E676;   
+            --cor-verde-escuro: #1B5E20;
+            --cor-texto: #ffffff;
+            --cor-fundo-card: rgba(255, 255, 255, 0.1); 
+            --borda-raio: 15px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Verdana', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            /* Fundo Degradê Fixo */
+            background: linear-gradient(180deg, #000000 0%, #052b05 100%);
+            background-attachment: fixed; 
+            color: var(--cor-texto);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        /* --- SEÇÕES (PÁGINAS) --- */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            border-bottom: 1px solid rgba(0, 230, 118, 0.2);
+        }
+
+        /* --- MENU SUPERIOR --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            border-bottom: 2px solid var(--cor-verde-neon);
+            padding: 15px 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--cor-verde-neon);
+        }
+
+        /* --- TIPOGRAFIA --- */
+        h1, h2, h3 {
+            color: var(--cor-verde-neon);
+            text-shadow: 0px 0px 10px rgba(0, 230, 118, 0.3);
+            text-align: center;
+        }
+        
+        h2 { margin-bottom: 40px; font-size: 2.5rem; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+
+        /* --- HOME (INÍCIO) --- */
+        .hero-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .hero-text { flex: 1; min-width: 300px; text-align: left; }
+        .hero-text h1 { font-size: 4rem; margin-bottom: 10px; text-align: left; }
+        
+        .img-hero {
+            border: 5px solid var(--cor-verde-neon);
+            border-radius: 50px;
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.4);
+            max-width: 350px;
+            width: 100%;
+        }
+
+        /* --- MENU INTERATIVO (HUB) --- */
+        .hub-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sanfona-central {
+            width: 100%;
+            max-width: 400px;
+            z-index: 2;
+            
+        }
+
+
+        .link-flutuante {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--cor-verde-neon);
+            padding: 12px 24px;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            white-space: nowrap;
+            z-index: 5;
+        }
+        .link-flutuante:hover {
+            background: var(--cor-verde-neon);
+            color: black;
+            box-shadow: 0 0 15px var(--cor-verde-neon);
+        }
+
+        .pos-tl { top: 10%; left: 0%; }
+        .pos-tr { top: 10%; right: 0%; }
+        .pos-bl { bottom: 10%; left: 0%; }
+        .pos-br { bottom: 10%; right: 0%; }
+
+        /* --- BIOGRAFIA (ESTILO CARDS LARGOS) --- */
+        .bio-container {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .bio-box {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            background-color: var(--cor-fundo-card);
+            padding: 40px;
+            border-radius: var(--borda-raio);
+            border: 1px solid var(--cor-verde-escuro);
+            backdrop-filter: blur(5px);
+        }
+
+        .bio-box img {
+            width: 250px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid var(--cor-verde-neon);
+        }
+
+        .reverso { flex-direction: row-reverse; }
+
+        /* --- CURIOSIDADES (ESTILO GRID) --- */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .card-curiosidade {
+            background-color: var(--cor-fundo-card);
+            padding: 30px;
+            border-radius: var(--borda-raio);
+            border: 1px solid var(--cor-verde-escuro);
+            border-left: 5px solid var(--cor-verde-neon);
+            transition: transform 0.3s ease;
+        }
+
+        .card-curiosidade:hover {
+            transform: translateY(-10px);
+            background-color: rgba(0, 230, 118, 0.05);
+        }
+
+        .card-curiosidade h3 {
+            text-align: left;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* --- TABELA DE MÚSICAS --- */
+        .tabela-container {
+            width: 100%;
+            max-width: 900px;
+            overflow-x: auto;
+            background-color: var(--cor-fundo-card);
+            border-radius: var(--borda-raio);
+            padding: 20px;
+            border: 1px solid var(--cor-verde-escuro);
+        }
+
+        table { width: 100%; min-width: 600px; border-collapse: collapse; color: white; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        th { background-color: var(--cor-verde-escuro); color: var(--cor-verde-neon); text-transform: uppercase; }
+        tr:hover { background-color: rgba(0, 230, 118, 0.1); }
+
+        .btn-play {
+            background-color: var(--cor-verde-neon);
+            color: black;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn-play:hover { transform: scale(1.05); }
+
+        footer { background-color: black; border-top: 2px solid var(--cor-verde-neon); padding: 30px; text-align: center; margin-top: auto; }
+
+        /* --- RESPONSIVIDADE (CELULAR/TABLET) --- */
+        @media (max-width: 900px) {
+            .hero-text h1 { font-size: 3rem; }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 60px 20px; }
+            
+            /* Home */
+            .hero-content { flex-direction: column; text-align: center; }
+            .hero-text h1 { font-size: 2.5rem; text-align: center; }
+            .hero-text { text-align: center; }
+            
+            /* Hub Interativo Mobile */
+            .hub-container { flex-direction: column; height: auto; padding: 20px 0; }
+            .link-flutuante { position: static; display: block; width: 100%; max-width: 300px; text-align: center; margin: 8px 0; }
+            .sanfona-central { margin: 20px 0; max-width: 200px; }
+
+            /* Biografia Mobile */
+            .bio-box, .bio-box.reverso { flex-direction: column; text-align: center; padding: 20px; }
+            .bio-box img { width: 100%; max-width: 300px; height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#biografia">Biografia</a></li>
+                <li><a href="#curiosidades">Curiosidades</a></li>
+                <li><a href="#musicas">Músicas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p style="color: var(--cor-verde-neon); letter-spacing: 2px;">O REI DO BAIÃO</p>
+                    <h1>Luiz Gonzaga</h1>
+                    <p>O som do sertão que ecoa pelo Brasil. Bem-vindo ao acervo digital da lenda da música nordestina.</p>
+                    <a href="#musicas" class="btn-play" style="text-decoration: none; padding: 12px 25px;">Ouvir Sucessos</a>
+                </div>
+                <img src="img/img1.png" alt="Luiz Gonzaga" class="img-hero">
+            </div>
+        </section>
+
+        <section id="hub">
+            <h2 style="margin-bottom: 20px;">Explore a Vida do Rei</h2>
+            <div class="hub-container">
+                <a href="#biografia" class="link-flutuante pos-tl">História de Vida</a>
+                <a href="#musicas" class="link-flutuante pos-tr">Top 10 Hits</a>
+                
+                <img src="img/img2.png" alt="Sanfona" class="sanfona-central">
+                
+                <a href="#curiosidades" class="link-flutuante pos-bl">Curiosidades</a>
+                <a href="https://www.youtube.com/channel/UC7nhtHuj_4Q_EL2gaMmnwZA" target="_blank" class="link-flutuante pos-br">Canal YouTube</a>
+            </div>
+        </section>
+
+        <section id="biografia">
+            <h2>Biografia Completa</h2>
+            <div class="bio-container">
+                
+                <div class="bio-box">
+                    <img src="img/img3.png" alt="Luiz Gonzaga Sorrindo">
+                    <div>
+                        <h3 style="text-align: left; margin-bottom: 10px;">A Infância em Exu</h3>
+                        <p>Luiz Gonzaga nasceu na Fazenda Caiçara, em Exu, Sertão de Pernambuco, no dia 13 de dezembro de 1912. Era o segundo filho de Januário e Ana Batista.</p>
+                        <p>Desde menino, o pequeno Luiz fugia do trabalho na roça para observar o pai, Mestre Januário, consertar e tocar sanfonas de 8 baixos. Foi ali que a semente do baião foi plantada.</p>
+                    </div>
+                </div>
+
+                <div class="bio-box reverso">
+                    <img src="img/img4.png" alt="Luiz Gonzaga Jovem" style="filter: sepia(1);">
+                    <div>
+                        <h3 style="text-align: left; margin-bottom: 10px;">Do Exército à Coroa de Rei</h3>
+                        <p>Em 1930, após uma desilusão amorosa, fugiu e ingressou no Exército em Fortaleza. Viajou o Brasil como corneteiro e, no Rio de Janeiro, deu baixa para tocar em bares.</p>
+                        <p>Foi ao assumir suas raízes nordestinas — vestindo o gibão de couro e tocando o forró pé-de-serra — que ele conquistou o rádio e se tornou o eterno Rei do Baião.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="curiosidades">
+            <h2>Curiosidades e Legado</h2>
+            <div class="cards-grid">
+                
+                <div class="card-curiosidade">
+                    <h3>O Gibão de Couro</h3>
+                    <p>Você sabia que o visual icônico de Luiz Gonzaga foi inspirado nos vaqueiros do sertão e nos cangaceiros?</p>
+                    <p>Ao perceber que era ignorado no Sul vestindo terno e gravata, ele decidiu usar a indumentária de couro para representar seu povo com orgulho. Isso virou sua marca registrada mundial.</p>
+                </div>
+
+                <div class="card-curiosidade">
+                    <h3>Pai e Filho</h3>
+                    <p>A relação de Luiz com seu filho, Gonzaguinha, foi marcada por conflitos e reaproximação.</p>
+                    <p>Apesar das diferenças, eles fizeram uma turnê histórica juntos chamada "A Vida do Viajante" no início dos anos 80, unindo o forró tradicional à MPB.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="musicas">
+            <h2 style="margin-bottom: 30px;">Top 10 Sucessos</h2>
+            
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Música</th>
+                            <th>Ano</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td>Asa Branca</td>
+                            <td>1947</td>
+                            <td><button class="btn-play">▶ Play</button></td>
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td>O Xote das Meninas</td>
+                            <td>1957</td>
+                            <td><button class="btn-play">▶ Play</button></td>
+                        </tr>
+                        <tr>
+                            <td>03</td>
+                            <td>Numa Sala de Reboco</td>
+                            <td>1964</td><td>
+                            <button class="btn-play">▶ Play</button></td>
+                        </tr>
+                        <tr>
+                            <td>04</td>
+                            <td>Pagode Russo</td>
+                            <td>1947</td>
+                            <td><button class="btn-play">▶ Play</button></td>
+                        </tr>
+                        <tr>
+                            <td>05</td>
+                            <td>A Vida do Viajante</td>
+                            <td>1953</td>
+                            <td><button class="btn-play">▶ Play</button></td>
+                        </tr>
+                        <tr>
+                            <td>06</td>
+                            <td>Qui Nem Jiló</td>
+                            <td>1950</td>
+                            <td><button class="btn-play">▶ Play</button></td>
+                        </tr>
+                        <tr>
+                            <td>07</td>
+                            <td>Sabiá</td>
+                            <td>1951</td>
+                            <td><button class="btn-play">▶ Play</button></td>
+                        </tr>
+                        <tr>
+                            <td>08</td>
+                            <td>Olha Pro Céu</td>
+                            <td>1958</td>
+                            <td><button class="btn-play">▶ Play</button></td>
+                        </tr>
+                        <tr>
+                            <td>09</td>
+                            <td>Riacho do Navio</td>
+                            <td>1955</td>
+                            <td><button class="btn-play">▶ Play</button></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Assum Preto</td>
+                            <td>1950</td>
+                            <td><button class="btn-play">▶ Play</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Projeto Escolar - Luiz Gonzaga (1912 - 1989)</p>
+        <p>Desenvolvido com carinho para preservar a cultura nordestina.</p>
+        <p style="color: var(--cor-verde-neon); margin-top: 10px;">&copy; 2026 Todos os direitos reservados</p>
+    </footer>
+
+</body>
+</html>
