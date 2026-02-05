@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luiz Gonzaga - O Rei do Baião</title>
     <style>
-        /* --- CONFIGURAÇÕES GERAIS E CORES --- */
+        
         :root {
             --cor-verde-neon: #00E676;   
             --cor-verde-escuro: #1B5E20;
@@ -26,7 +26,7 @@
         }
 
         body {
-            /* Fundo Degradê Fixo */
+            
             background: linear-gradient(180deg, #000000 0%, #052b05 100%);
             background-attachment: fixed; 
             color: var(--cor-texto);
@@ -40,7 +40,7 @@
             width: 100%;
         }
 
-        /* --- SEÇÕES (PÁGINAS) --- */
+        
         section {
             min-height: 100vh;
             display: flex;
@@ -51,7 +51,7 @@
             border-bottom: 1px solid rgba(0, 230, 118, 0.2);
         }
 
-        /* --- MENU SUPERIOR --- */
+        
         header {
             position: fixed;
             top: 0;
@@ -84,7 +84,7 @@
             color: var(--cor-verde-neon);
         }
 
-        /* --- TIPOGRAFIA --- */
+    
         h1, h2, h3 {
             color: var(--cor-verde-neon);
             text-shadow: 0px 0px 10px rgba(0, 230, 118, 0.3);
@@ -94,7 +94,7 @@
         h2 { margin-bottom: 40px; font-size: 2.5rem; }
         p { line-height: 1.6; margin-bottom: 15px; }
 
-        /* --- HOME (INÍCIO) --- */
+        
         .hero-content {
             display: flex;
             flex-wrap: wrap;
@@ -116,7 +116,7 @@
             width: 100%;
         }
 
-        /* --- MENU INTERATIVO (HUB) --- */
+    
         .hub-container {
             position: relative;
             width: 100%;
@@ -159,7 +159,6 @@
         .pos-bl { bottom: 10%; left: 0%; }
         .pos-br { bottom: 10%; right: 0%; }
 
-        /* --- BIOGRAFIA (ESTILO CARDS LARGOS) --- */
         .bio-container {
             display: flex;
             flex-direction: column;
@@ -189,7 +188,6 @@
 
         .reverso { flex-direction: row-reverse; }
 
-        /* --- CURIOSIDADES (ESTILO GRID) --- */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -218,7 +216,6 @@
             font-size: 1.5rem;
         }
 
-        /* --- TABELA DE MÚSICAS --- */
         .tabela-container {
             width: 100%;
             max-width: 900px;
@@ -243,30 +240,31 @@
             font-weight: bold;
             cursor: pointer;
             transition: transform 0.2s;
+            
         }
         .btn-play:hover { transform: scale(1.05); }
 
         footer { background-color: black; border-top: 2px solid var(--cor-verde-neon); padding: 30px; text-align: center; margin-top: auto; }
 
-        /* --- RESPONSIVIDADE (CELULAR/TABLET) --- */
+        
         @media (max-width: 900px) {
             .hero-text h1 { font-size: 3rem; }
         }
 
         @media (max-width: 768px) {
             section { padding: 60px 20px; }
+
             
-            /* Home */
             .hero-content { flex-direction: column; text-align: center; }
             .hero-text h1 { font-size: 2.5rem; text-align: center; }
             .hero-text { text-align: center; }
             
-            /* Hub Interativo Mobile */
+        
             .hub-container { flex-direction: column; height: auto; padding: 20px 0; }
             .link-flutuante { position: static; display: block; width: 100%; max-width: 300px; text-align: center; margin: 8px 0; }
             .sanfona-central { margin: 20px 0; max-width: 200px; }
 
-            /* Biografia Mobile */
+        
             .bio-box, .bio-box.reverso { flex-direction: column; text-align: center; padding: 20px; }
             .bio-box img { width: 100%; max-width: 300px; height: auto; }
         }
